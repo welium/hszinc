@@ -65,6 +65,10 @@ def dump_meta_item(item, version=LATEST_VER):
     if item_value is MARKER:
         return dump_id(item_id, version=version)
     else:
+        if item_id == "lease":
+            return '%s:%ssec' % (dump_id(item_id, version=version), \
+                          dump_scalar(item_value, version=version))
+
         return '%s:%s' % (dump_id(item_id, version=version), \
                           dump_scalar(item_value, version=version))
 
